@@ -938,26 +938,44 @@
    
 
     <!-- التهنئة العامة (مربوطة بـ Google Sheets) -->
+    <!-- التهنئة العامة (محمية بكلمة مرور) -->
     <section class="wishes-section reveal">
         <h2 class="section-title">تهنئة للعروسين</h2>
-        <div class="wishes-form">
-            <h3>💌 اترك تهنئتك لأيمن وداليا 💌</h3>
-            <form onsubmit="submitPublicWish(event)">
-                <div class="form-group">
-                    <label>اسمك</label>
-                    <input type="text" id="wishName" required placeholder="اكتب اسمك هنا" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label>تهنئتك</label>
-                    <textarea id="wishText" required placeholder="اكتب تهنئتك الجميلة للعروسين"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">إرسال التهنئة </button>
-            </form>
+
+        <!-- واجهة إدخال كلمة المرور -->
+        <div id="password-container" style="text-align: center; background: rgba(93, 173, 226, 0.05); border: 1px solid var(--gold); border-radius: 15px; padding: 40px 20px;">
+            <h3 style="color: var(--gold); margin-bottom: 15px; font-family: 'Amiri', serif; font-size: 1.8rem;">قسم خاص</h3>
+            <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 1.1rem;">يرجى إدخال كلمة المرور لعرض وكتابة التهاني</p>
+            
+            <input type="password" id="wishes-password" placeholder="كلمة المرور..." style="padding: 12px 20px; border-radius: 25px; border: 1px solid rgba(93, 173, 226, 0.5); background: rgba(0,0,0,0.02); color: var(--text-light); text-align: center; margin-bottom: 20px; width: 80%; max-width: 250px; outline: none; font-family: 'Cairo', sans-serif; font-size: 1rem;">
+            <br>
+            <button onclick="checkPassword()" class="submit-btn" style="width: auto; padding: 12px 40px; font-size: 1.1rem;">دخول</button>
+            
+            <p id="password-error" style="color: #e74c3c; margin-top: 15px; display: none; font-weight: 600;">كلمة المرور غير صحيحة!</p>
         </div>
-        <div class="wishes-ticker">
-            <h4> تهنئات الضيوف </h4>
-            <div class="ticker-content" id="wishesTicker">
-                <div class="wish-item"><div class="wish-name">جاري تحميل التهنئات...</div></div>
+
+        <!-- المحتوى الأصلي للتهاني (مخفي افتراضياً) -->
+        <div id="wishes-content" style="display: none;">
+            <div class="wishes-form">
+                <h3>💌 اترك تهنئتك لأيمن وداليا 💌</h3>
+                <form onsubmit="submitPublicWish(event)">
+                    <div class="form-group">
+                        <label>اسمك</label>
+                        <input type="text" id="wishName" required placeholder="اكتب اسمك هنا" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label>تهنئتك</label>
+                        <textarea id="wishText" required placeholder="اكتب تهنئتك الجميلة للعروسين"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">إرسال التهنئة</button>
+                </form>
+            </div>
+            
+            <div class="wishes-ticker">
+                <h4>تهنئات الضيوف</h4>
+                <div class="ticker-content" id="wishesTicker">
+                    <div class="wish-item"><div class="wish-name">جاري تحميل التهنئات...</div></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1006,6 +1024,22 @@
                     container.appendChild(piece);
     }
 }
+        // دالة فحص كلمة المرور
+        function checkPassword() {
+            const passInput = document.getElementById('wishes-password').value;
+            const correctPass = "ayman2026"; 
+
+            if (passInput === correctPass) {
+                // إخفاء مربع كلمة السر وإظهار قسم التعليقات
+                document.getElementById('password-container').style.display = 'none';
+                document.getElementById('wishes-content').style.display = 'block';
+                // تحميل التعليقات الآن فقط
+                loadPublicWishes(); 
+            } else {
+                // إظهار رسالة الخطأ
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
         
         function enterWedding() {
             document.getElementById('introScreen').classList.add('hidden');
@@ -1023,7 +1057,6 @@
             }
             
             createConfetti();
-            loadPublicWishes();
         }
         
        function createParticles() {
