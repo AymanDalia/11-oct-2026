@@ -214,7 +214,7 @@
         
         .particle {
             position: absolute;
-            /* تحويل العنصر إلى كرة ضوء بيضاء شفافة متدرجة */
+            
             background: radial-gradient(circle, rgb(2, 106, 243) 0%, rgba(255, 255, 255, 0) 70%);
             border-radius: 50%;
             animation: floatDown ease-in-out infinite;
@@ -383,7 +383,7 @@
             from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* تنسيق أسماء الآباء ونص الدعوة الجديد */
+        
         .fathers-container {
             display: flex;
             justify-content: center;
@@ -412,7 +412,7 @@
             font-weight: 600;
         }
 
-        /* تعديل حجم خط الآباء في الموبايل */
+        
         @media (max-width: 768px) {
             .fathers-container { gap: 20px; }
             .father-name { font-size: 1.4rem; }
@@ -658,7 +658,7 @@
         .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
         
         .wishes-ticker {
-    background: rgba(93, 173, 226, 0.05); /* خلفية سماوية هادئة */
+    background: rgba(93, 173, 226, 0.05);
     border: 1px solid var(--gold);
     border-radius: 15px;
     padding: 20px;
@@ -671,17 +671,17 @@
     margin-bottom: 15px; 
 }
 
-/* تحويل العرض للطول مع إضافة شريط تمرير */
+
 .ticker-content { 
     display: flex; 
-    flex-direction: column; /* العرض بالطول */
+    flex-direction: column; 
     gap: 15px; 
-    max-height: 350px; /* الحد الأقصى لطول المربع */
-    overflow-y: auto; /* تفعيل شريط التمرير الطولي */
-    padding-left: 10px; /* مسافة لشريط التمرير */
+    max-height: 350px;
+    overflow-y: auto; 
+    padding-left: 10px; 
 }
 
-/* تجميل شكل شريط التمرير ليكون أنيقاً */
+
 .ticker-content::-webkit-scrollbar {
     width: 6px;
 }
@@ -700,7 +700,7 @@
     border-radius: 12px;
     border-right: 4px solid var(--gold);
     width: 100%;
-    /* الحل الجذري لمشكلة خروج النص */
+    
     white-space: normal; 
     word-wrap: break-word; 
     overflow-wrap: break-word;
@@ -715,7 +715,7 @@
 .wish-item .wish-text { 
     color: var(--text-light); 
     font-size: 0.95rem; 
-    line-height: 1.6; /* مسافة مريحة بين السطور */
+    line-height: 1.6; 
 }
         
         /* Sections عامة */
@@ -744,7 +744,7 @@
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
         .music-control {
-            position: fixed; bottom: 30px; right: 20px; /* نقلناه لليمين عشان يكون أسهل في الإبهام */
+            position: fixed; bottom: 30px; right: 20px; 
             width: 55px; height: 55px;
             background: var(--gold); color: #000;
             border: none; border-radius: 50%;
@@ -768,13 +768,13 @@
         /* ===== الفوتر الجديد مع اسم المصمم ===== */
         footer {
             background: var(--bg-darker);
-            padding: 50px 20px 40px; /* زيادة المسافة من الأسفل عشان شريط الآيفون */
+            padding: 50px 20px 40px; 
             text-align: center;
             color: var(--text-muted);
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             position: relative;
             z-index: 2;
-            padding-bottom: max(30px, env(safe-area-inset-bottom)); /* دعم شريط الآيفون السفلي */
+            padding-bottom: max(30px, env(safe-area-inset-bottom)); 
         }
         
         footer p { font-size: 1.2rem; margin-bottom: 20px; }
@@ -808,7 +808,7 @@
             .intro-screen p { font-size: 1.1rem; }
             .enter-btn { padding: 15px 40px; font-size: 1.2rem; }
             
-            .couple-name { font-size: 3.2rem; } /* تصغير خط الأسماء عشان الموبايل */
+            .couple-name { font-size: 3.2rem; } 
             .couple-container { gap: 15px; }
             .couple-title { font-size: 1rem; }
             .couple-heart { font-size: 2rem; }
@@ -991,12 +991,8 @@
 
     <button class="music-control" id="musicBtn" onclick="toggleMusic()" style="display:none;">🎵</button>
     
-    <!-- كود الصوت المحسن للموبايل (يدعم m4a و mp3 مع رابط احتياطي) -->
     <audio id="bgMusic" loop preload="auto">
-        <!-- <source src="wedding-music.m4a" type="audio/mp4"> -->
         <source src="wdding.mpeg" type="audio/mpeg">
-        <!-- رابط احتياطي يشتغل لو الملف المحلي فيه مشكلة -->
-        <!-- <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"> -->
     </audio>
 
     <script>
@@ -1005,12 +1001,10 @@
 
         function createIntroConfetti() {
                 const container = document.getElementById('introConfetti');
-                // ألوان أنيقة تتناسب مع السماوي (أبيض، وأبيض شفاف)
                 const colors = ['#ffffff', '#e6f3fa', '#d4eaf7'];
                 for (let i = 0; i < 40; i++) {
                     const piece = document.createElement('div');
                     piece.className = 'intro-confetti-piece';
-                    // تحويلها إلى كرات ضوء صغيرة متلألئة
                     piece.style.cssText = `
                         left: ${Math.random() * 100}%;
                         top: -20px;
@@ -1025,20 +1019,18 @@
                     container.appendChild(piece);
     }
 }
-        // دالة فحص كلمة المرور
-        function checkPassword() {
+       function checkPassword() {
             const passInput = document.getElementById('wishes-password').value;
-            // يمكنك تغيير كلمة "ayman2026" إلى أي كلمة سر تريدها
-            const correctPass = "ayman2026"; 
+           
+            const encodedPass = "YXltYW4yMDI2"; 
 
-            if (passInput === correctPass) {
-                // إخفاء مربع كلمة السر وإظهار قسم التعليقات
+            if (btoa(passInput) === encodedPass) {
+                
                 document.getElementById('password-container').style.display = 'none';
                 document.getElementById('wishes-content').style.display = 'block';
-                // تحميل التعليقات الآن فقط
+                // تحميل التعليقات من جوجل شيت
                 loadPublicWishes(); 
             } else {
-                // إظهار رسالة الخطأ
                 document.getElementById('password-error').style.display = 'block';
             }
         }
@@ -1050,7 +1042,6 @@
             const music = document.getElementById('bgMusic');
             music.volume = 0.5;
             
-            // محاولة تشغيل الموسيقى ومعالجة أي أخطاء في الموبايل
             const playPromise = music.play();
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
@@ -1064,18 +1055,15 @@
         
        function createParticles() {
     const container = document.getElementById('particles');
-    // تقليل العدد إلى 30 ليكون التأثير هادئاً وغير مزعج
     for (let i = 0; i < 30; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
         
-        // تحديد حجم عشوائي لكرة الضوء (بين 15 و 40 بيكسل)
         const size = Math.random() * 25 + 15;
         particle.style.width = size + 'px';
         particle.style.height = size + 'px';
         
-        // سرعة وتأخير عشوائي
         particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
         particle.style.animationDelay = (Math.random() * 5) + 's';
         
@@ -1210,7 +1198,6 @@
         createParticles();
         revealOnScroll();
         
-        // معالجة أخطاء الموسيقى تلقائياً
         const bgMusic = document.getElementById('bgMusic');
         bgMusic.addEventListener('error', function() {
             console.log('جرب تشغيل المصدر التالي...');
